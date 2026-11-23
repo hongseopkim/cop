@@ -5,15 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#130605">
   <title>2027 논의 사항 · COP</title>
-  <link rel="stylesheet" href="stage.css?v=3">
+  <link rel="stylesheet" href="stage.css?v=5">
   <script src="nav.js" defer></script>
 </head>
 <body class="lobby">
   <header class="marquee">
       <nav class="site-nav" aria-label="COP 메뉴">
-        <button class="company" type="button" aria-expanded="false" aria-controls="cop-nav-links">
-          COP <span class="company-year">2026</span><span class="nav-arrow" aria-hidden="true"></span>
-        </button>
+        <div class="nav-brand">
+          <a class="company" href="./" aria-label="COP 첫 화면">COP <span class="company-year">2026</span></a>
+          <button class="nav-toggle" type="button" aria-label="COP 메뉴 열기" aria-expanded="false" aria-controls="cop-nav-links">
+            <span class="nav-arrow" aria-hidden="true"></span>
+          </button>
+        </div>
         <div class="nav-panel" id="cop-nav-links" hidden>
           <ul>
             <li><a href="names.html">2026 함께한 이름들</a></li>

@@ -8,7 +8,7 @@
   <title>2026 COP 활동 마무리</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23511918'/%3E%3Cpath d='M7 17h26v17H7zM5 13h30v6H5z' fill='%23c98b42'/%3E%3Cpath d='M20 13v21M20 12c-12 1-12-9-5-7 3 1 5 7 5 7s2-6 5-7c7-2 7 8-5 7Z' fill='none' stroke='%23fff0bc' stroke-width='2.5'/%3E%3C/svg%3E">
   <link rel="preload" as="image" href="stage.webp">
-  <link rel="stylesheet" href="stage.css?v=4">
+  <link rel="stylesheet" href="stage.css?v=5">
   <script src="nav.js" defer></script>
   <script src="stage.js" defer></script>
 </head>
@@ -25,9 +25,12 @@
     <div class="frame" aria-hidden="true"></div>
     <header class="marquee">
       <nav class="site-nav" aria-label="COP 메뉴">
-        <button class="company" type="button" aria-expanded="false" aria-controls="cop-nav-links">
-          COP <span class="company-year">2026</span><span class="nav-arrow" aria-hidden="true"></span>
-        </button>
+        <div class="nav-brand">
+          <a class="company" href="./" aria-label="COP 첫 화면">COP <span class="company-year">2026</span></a>
+          <button class="nav-toggle" type="button" aria-label="COP 메뉴 열기" aria-expanded="false" aria-controls="cop-nav-links">
+            <span class="nav-arrow" aria-hidden="true"></span>
+          </button>
+        </div>
         <div class="nav-panel" id="cop-nav-links" hidden>
           <ul>
             <li><a href="names.html">2026 함께한 이름들</a></li>
