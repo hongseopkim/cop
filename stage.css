@@ -1,6 +1,6 @@
 @font-face {
   font-family: Stage Serif;
-  src: url(title.woff) format("woff");
+  src: url(exhibit.woff) format("woff");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -65,7 +65,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #ffdfa3; outline-offs
   letter-spacing: .02em;
   color: var(--cream);
 }
-.company span {
+.company-year {
   padding-left: 12px;
   border-left: 1px solid #d6a66b7a;
   color: #e0b98a;
@@ -90,27 +90,25 @@ button:focus-visible, a:focus-visible { outline: 2px solid #ffdfa3; outline-offs
   text-align: center;
   pointer-events: none;
 }
-.film-title p {
-  margin: 0 0 14px;
-  color: #ffe1aa;
-  font-size: clamp(10px, 1.3vw, 12px);
-  font-weight: 550;
-  letter-spacing: .23em;
-  white-space: nowrap;
-  text-shadow: 0 2px 12px #381306;
-}
-.film-title h1 {
+.film-title h1, .film-reveal {
   margin: 0;
   color: #fff1d0;
   font-family: Stage Serif, "Batang", serif;
-  font-size: clamp(32px, min(5.55vw, 8.4svh), 86px);
+  font-size: clamp(28px, min(4.2vw, 7svh), 68px);
   font-weight: 400;
-  line-height: 1.18;
-  letter-spacing: -.075em;
+  line-height: 1.2;
+  letter-spacing: -.065em;
   word-break: keep-all;
+  text-wrap: balance;
   text-shadow: 0 4px 18px #190502ae;
 }
-.film-title h1 span { display: block; }
+.film-reveal {
+  margin-top: .32em;
+  color: #ffe3b2;
+  font-size: clamp(25px, min(3.42vw, 5.8svh), 56px);
+  animation: title-in .95s ease-out calc(var(--stage-time) + .3s) both;
+}
+@keyframes title-in { from { opacity: 0; } to { opacity: 1; } }
 .gift {
   position: absolute;
   z-index: 3;
@@ -303,8 +301,8 @@ video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
   .stage-image { mask-image: linear-gradient(180deg, transparent, black 13%, black 90%, transparent); }
   .marquee { inset-inline: 19px; }
   .film-title { top: 21.1%; }
-  .film-title h1 { font-size: clamp(39px, 10.8vw, 65px); }
-  .film-title p { margin-bottom: 12px; }
+  .film-title h1 { font-size: clamp(27px, 8.05vw, 52px); }
+  .film-reveal { font-size: clamp(24px, 6.85vw, 44px); }
   .runtime { bottom: max(33px, env(safe-area-inset-bottom)); }
 }
 @media (min-aspect-ratio: 2/1) {
@@ -315,11 +313,153 @@ video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
 @media (max-height: 550px) and (orientation: landscape) {
   .marquee { inset-block-start: 14px; }
   .film-title { top: 12%; }
-  .film-title p { margin-bottom: 5px; }
-  .film-title h1 { font-size: clamp(29px, 7.8svh, 42px); }
+  .film-title h1 { font-size: clamp(25px, 7.7svh, 41px); }
+  .film-reveal { font-size: clamp(22px, 5.8svh, 35px); }
   .invitation { min-height: 37px; }
   .runtime { bottom: 6px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
+}
+
+/* Shared theatre navigation */
+.marquee { z-index: 4; }
+.site-nav { position: relative; }
+.site-nav .company {
+  min-height: 42px;
+  padding: 0 4px 0 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.nav-arrow {
+  width: 7px;
+  height: 7px;
+  margin-left: 1px;
+  border-right: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  transform: translateY(-2px) rotate(45deg);
+}
+.company[aria-expanded="true"] .nav-arrow { transform: translateY(2px) rotate(225deg); }
+.nav-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: min(245px, calc(100vw - 38px));
+  padding-top: 9px;
+}
+.nav-panel ul {
+  display: grid;
+  gap: 2px;
+  padding: 6px;
+  margin: 0;
+  list-style: none;
+  border: 1px solid #bb815764;
+  border-radius: 9px;
+  background: #21120ff7;
+  box-shadow: 0 12px 28px #0803029e;
+}
+.nav-panel a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  color: var(--cream);
+  font-size: 14px;
+  text-decoration: none;
+  word-break: keep-all;
+}
+.nav-panel a:hover, .nav-panel a[aria-current="page"] { background: #6e3d2e54; color: #ffdf9e; }
+.nav-panel a:focus-visible { outline-offset: -2px; }
+.home-link {
+  padding: 9px 1px;
+  color: #edd0aa;
+  font-size: 13px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.home-link:hover { color: #ffdf9e; }
+.runtime { font-size: 13px; letter-spacing: .045em; }
+
+/* The name wall and discussion pages share the theatre's warm light. */
+.lobby {
+  position: relative;
+  min-height: 100svh;
+  isolation: isolate;
+  background: radial-gradient(ellipse at 50% -8%, #754425a1 0%, transparent 55%), #180b0a;
+}
+.lobby::before, .lobby::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: 0 auto 0 0;
+  width: clamp(72px, 16vw, 260px);
+  background: url(velvet.webp) left top / 100% 100% no-repeat;
+  opacity: .62;
+  mask-image: linear-gradient(90deg, black, transparent 97%);
+  pointer-events: none;
+}
+.lobby::after { inset: 0 0 0 auto; transform: scaleX(-1); }
+.lobby-content {
+  width: min(920px, 100% - 48px);
+  margin-inline: auto;
+  padding: clamp(106px, 18svh, 170px) 0 64px;
+}
+.lobby-heading { text-align: center; margin-bottom: clamp(29px, 5.5vh, 49px); }
+.lobby-heading h1, .agenda-card h2, .name-wall li {
+  margin: 0;
+  color: #ffe9c0;
+  font-family: Stage Serif, "Batang", serif;
+  font-weight: 400;
+  letter-spacing: -.055em;
+  word-break: keep-all;
+  text-wrap: balance;
+}
+.lobby-heading h1 { font-size: clamp(32px, 6vw, 65px); line-height: 1.2; }
+.lobby-heading p, .agenda-card p {
+  color: #e1bc98;
+  margin: 13px 0 0;
+  font-size: clamp(13px, 1.4vw, 15px);
+  line-height: 1.55;
+  word-break: keep-all;
+}
+.name-wall {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(10px, 1.5vw, 16px);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.name-wall li, .agenda-card {
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(154deg, #583425e0, #281513 72%);
+  border: 1px solid #b8815580;
+  box-shadow: 0 6px 20px #0802004d, inset 0 1px #ffd1991c;
+}
+.name-wall li {
+  min-height: clamp(68px, 10vw, 91px);
+  font-size: clamp(21px, 3.1vw, 31px);
+  padding: 10px;
+}
+.name-wall li::before, .agenda-card::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid #b881552e;
+  pointer-events: none;
+}
+.agenda-list { display: grid; gap: 15px; width: min(100%, 650px); margin-inline: auto; }
+.agenda-card {
+  justify-items: start;
+  padding: clamp(24px, 5vw, 38px);
+}
+.agenda-card h2 { font-size: clamp(23px, 4.15vw, 34px); }
+.agenda-card p { margin-top: 9px; }
+@media (max-width: 680px) {
+  .lobby::before, .lobby::after { opacity: .39; }
+  .name-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
