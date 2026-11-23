@@ -90,11 +90,21 @@ button:focus-visible, a:focus-visible { outline: 2px solid #ffdfa3; outline-offs
   text-align: center;
   pointer-events: none;
 }
-.film-title h1, .film-reveal {
+.film-title h1 {
+  margin: 0 0 clamp(10px, 1.8svh, 17px);
+  color: #ffe2af;
+  font-size: clamp(11px, 1.2vw, 14px);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: .15em;
+  word-break: keep-all;
+  text-shadow: 0 2px 12px #381306;
+}
+.film-line {
   margin: 0;
   color: #fff1d0;
   font-family: Stage Serif, "Batang", serif;
-  font-size: clamp(28px, min(4.2vw, 7svh), 68px);
+  font-size: clamp(32px, min(5.25vw, 8.1svh), 81px);
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: -.065em;
@@ -103,10 +113,9 @@ button:focus-visible, a:focus-visible { outline: 2px solid #ffdfa3; outline-offs
   text-shadow: 0 4px 18px #190502ae;
 }
 .film-reveal {
-  margin-top: .32em;
-  color: #ffe3b2;
-  font-size: clamp(25px, min(3.42vw, 5.8svh), 56px);
-  animation: title-in .95s ease-out calc(var(--stage-time) + .3s) both;
+  margin-top: .05em;
+  color: #ffe9bf;
+  animation: title-in .9s ease-out calc(var(--stage-time) + .68s) both;
 }
 @keyframes title-in { from { opacity: 0; } to { opacity: 1; } }
 .gift {
@@ -301,8 +310,7 @@ video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
   .stage-image { mask-image: linear-gradient(180deg, transparent, black 13%, black 90%, transparent); }
   .marquee { inset-inline: 19px; }
   .film-title { top: 21.1%; }
-  .film-title h1 { font-size: clamp(27px, 8.05vw, 52px); }
-  .film-reveal { font-size: clamp(24px, 6.85vw, 44px); }
+  .film-line { font-size: clamp(34px, 10vw, 59px); }
   .runtime { bottom: max(33px, env(safe-area-inset-bottom)); }
 }
 @media (min-aspect-ratio: 2/1) {
@@ -313,8 +321,8 @@ video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
 @media (max-height: 550px) and (orientation: landscape) {
   .marquee { inset-block-start: 14px; }
   .film-title { top: 12%; }
-  .film-title h1 { font-size: clamp(25px, 7.7svh, 41px); }
-  .film-reveal { font-size: clamp(22px, 5.8svh, 35px); }
+  .film-title h1 { margin-bottom: 4px; }
+  .film-line { font-size: clamp(26px, 7.8svh, 43px); }
   .invitation { min-height: 37px; }
   .runtime { bottom: 6px; }
 }
@@ -462,4 +470,17 @@ video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
 @media (max-width: 680px) {
   .lobby::before, .lobby::after { opacity: .39; }
   .name-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.name-wall li {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(156deg, #533124, #281513 74%) padding-box,
+    linear-gradient(128deg, #9c582a 0%, #ffe5a4 21%, #be8045 47%, #8c502b 67%, #dfae65 87%, #a16231 100%) border-box;
+  box-shadow: 0 6px 20px #08020068, 0 0 13px #d69c5030, inset 0 1px #ffd19930;
+  text-shadow: 0 1px 10px #f1a74b2e;
+}
+.name-wall li::before {
+  inset: 4px;
+  border-color: #e1b7777d;
 }
