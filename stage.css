@@ -12,7 +12,7 @@
   background: #130605;
   --cream: #fae7bf;
   --gold: #e7b772;
-  --stage-time: 1.26s;
+  --stage-time: 1.6s;
 }
 *, *::before, *::after { box-sizing: border-box; }
 body { margin: 0; }
